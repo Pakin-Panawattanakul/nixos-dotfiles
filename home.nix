@@ -10,7 +10,6 @@
 
   imports = [
     ./home-manager/config-symlink.nix
-    ./home-manager/theme.nix
     ./home-manager/neovim.nix
     ./home-manager/terminal.nix
     ./home-manager/firefox.nix

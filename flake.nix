@@ -77,6 +77,7 @@
             pakin = {
               imports = [
                 ./home-manager/books-library.nix
+                ./home-manager/theme.nix
               ];
             };
           };
@@ -91,7 +92,11 @@
             ./modules/dwl.nix
           ];
           users = {
-            pakin = { };
+            pakin = {
+              imports = [
+                ./home-manager/theme.nix
+              ];
+            };
           };
         };
       };
