@@ -29,9 +29,15 @@
   nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 2;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    systemd-boot.configurationLimit = 2;
+  };
+
+  boot.extraModprobeConfig = ''
+    options hid_apple fnmode=2
+  '';
 
   # Set your time zone.
   time.timeZone = "Asia/Bangkok";
@@ -40,48 +46,66 @@
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
 
-  hardware.bluetooth = {
-    enable = true;
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
+
+    graphics.enable = true;
+
+    logitech.wireless.enable = true;
   };
 
-  # dbus: usually already true by default
-  services.dbus.enable = true;
+  services = {
+    # dbus: usually already true by default
+    dbus.enable = true;
 
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+    # Enable sound.
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+
+    udisks2.enable = true;
+
+    fwupd.enable = true;
   };
 
-  programs.steam.enable = true;
-  programs.steam.remotePlay.openFirewall = true;
-  programs.steam.extraCompatPackages = with pkgs; [
-    proton-ge-bin
-    gamescope
-  ];
+  programs = {
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+        gamescope
+      ];
+    };
 
-  # for setting theme
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        zlib
+        zstd
+        stdenv.cc.cc
+        stdenv.cc.cc.lib
+        curl
+        openssl
+        attr
+        libssh
+        bzip2
+        libxml2
+        acl
+        libsodium
+        util-linux
+        xz
+        systemd
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      zlib
-      zstd
-      stdenv.cc.cc
-      stdenv.cc.cc.lib
-      curl
-      openssl
-      attr
-      libssh
-      bzip2
-      libxml2
-      acl
-      libsodium
-      util-linux
-      xz
-      systemd
-
-    ];
+      ];
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -98,9 +122,6 @@
     cache.enable = true;
   };
 
-  hardware.graphics.enable = true;
-  security.pam.services.waylock = { };
-
   users.defaultUserShell = pkgs.bash;
   programs.zsh.enable = true;
   users.users.pakin.shell = pkgs.zsh;
@@ -114,6 +135,7 @@
     seahorse
   ];
 
+  security.pam.services.waylock = { };
   # gnome keyring
   services.gnome.gnome-keyring.enable = true;
   programs.geary.enable = true;
@@ -122,32 +144,18 @@
     nerd-fonts.jetbrains-mono
     noto-fonts
   ];
-  services.udisks2.enable = true;
 
-  services.fwupd.enable = true;
-
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=2
-  '';
-
-  hardware.logitech.wireless.enable = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
   system.stateVersion = "26.05";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
 }
