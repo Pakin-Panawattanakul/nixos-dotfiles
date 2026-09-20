@@ -106,7 +106,7 @@
           hostName = "nixos-NV15";
           hardwareConfig = "replace this with hardware config";
           extraModules = [
-            ./modules/systemd-boot.nix.nix
+            ./modules/grub.nix
             ./modules/nvidia.nix
             ./modules/kde.nix
           ];
