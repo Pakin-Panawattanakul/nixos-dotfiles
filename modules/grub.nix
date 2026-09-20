@@ -6,10 +6,10 @@
       device = "nodev";
       efiSupport = true;
       theme = pkgs.sleek-grub-theme.override {
-        withBanner = "NixOS";
-        withStyle = "dark";
+        #withBanner = "NixOS";
+        withStyle = "bigSur";
       };
     };
+    efi.canTouchEfiVariables = true;
   };
-  efi.canTouchEfiVariables = true;
 }

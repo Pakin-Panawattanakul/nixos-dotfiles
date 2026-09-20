@@ -68,7 +68,7 @@
           hardwareConfig = ./hosts/hardware-configuration-T480.nix;
           extraModules = [
             ./modules/systemd-boot.nix
-            ./modules/battery.nix
+            ./modules/tlp.nix
             ./modules/wifi.nix
             ./modules/ly.nix
             ./modules/dwl.nix
@@ -104,11 +104,13 @@
 
         nixos-NV15 = mkHost {
           hostName = "nixos-NV15";
-          hardwareConfig = "replace this with hardware config";
+          hardwareConfig = ./hosts/hardware-configuration-NV15.nix;
           extraModules = [
             ./modules/grub.nix
             ./modules/nvidia.nix
             ./modules/kde.nix
+            ./modules/wifi.nix
+            ./modules/tlp.nix
           ];
           users = {
             pakin = {
