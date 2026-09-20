@@ -10,6 +10,7 @@
   imports = [
     ./modules/udev.nix
     ./modules/tmux.nix
+    ./modules/game.nix
   ];
 
   nixpkgs.overlays = [
@@ -27,13 +28,6 @@
 
   # allow uneree software
   nixpkgs.config.allowUnfree = true;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-    systemd-boot.configurationLimit = 2;
-  };
 
   boot.extraModprobeConfig = ''
     options hid_apple fnmode=2
@@ -76,15 +70,6 @@
   };
 
   programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-        gamescope
-      ];
-    };
-
     nix-ld = {
       enable = true;
       libraries = with pkgs; [

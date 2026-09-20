@@ -67,6 +67,7 @@
           hostName = "nixos-T480";
           hardwareConfig = ./hosts/hardware-configuration-T480.nix;
           extraModules = [
+            ./modules/systemd-boot.nix
             ./modules/battery.nix
             ./modules/wifi.nix
             ./modules/ly.nix
@@ -87,6 +88,7 @@
           hostName = "nixos-home";
           hardwareConfig = ./hosts/hardware-configuration-home.nix;
           extraModules = [
+            ./modules/systemd-boot.nix
             ./modules/nvidia.nix
             ./modules/cosmic.nix
             ./modules/dwl.nix
@@ -96,6 +98,21 @@
               imports = [
                 ./home-manager/theme.nix
               ];
+            };
+          };
+        };
+
+        nixos-NV15 = mkHost {
+          hostName = "nixos-NV15";
+          hardwareConfig = "replace this with hardware config";
+          extraModules = [
+            ./modules/systemd-boot.nix.nix
+            ./modules/nvidia.nix
+            ./modules/kde.nix
+          ];
+          users = {
+            pakin = {
+              imports = [ ];
             };
           };
         };
