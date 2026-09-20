@@ -7,7 +7,7 @@
       efiSupport = true;
       theme = pkgs.sleek-grub-theme.override {
         #withBanner = "NixOS";
-        withStyle = "bigSur";
+        withStyle = "dark";
       };
     };
     efi.canTouchEfiVariables = true;

@@ -1,4 +1,11 @@
-#nvidia
+export PROTON_ENABLE_WAYLAND=1
+export QT_QPA_PLATFORM="wayland;xcb"
+export GDK_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland,x11
+export MOZ_ENABLE_WAYLAND=1
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+export XDG_SESSION_TYPE=wayland
+
 # this is not require to set by default just for forcing
 export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
