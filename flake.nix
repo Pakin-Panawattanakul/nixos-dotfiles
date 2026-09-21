@@ -88,15 +88,14 @@
           hostName = "nixos-home";
           hardwareConfig = ./hosts/hardware-configuration-home.nix;
           extraModules = [
-            ./modules/systemd-boot.nix
+            ./modules/grub.nix
             ./modules/nvidia.nix
-            ./modules/cosmic.nix
+            ./modules/kde.nix
             ./modules/dwl.nix
           ];
           users = {
             pakin = {
               imports = [
-                ./home-manager/theme.nix
               ];
             };
           };
