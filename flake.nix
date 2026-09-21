@@ -90,30 +90,14 @@
           extraModules = [
             ./modules/grub.nix
             ./modules/nvidia.nix
-            ./modules/kde.nix
+            ./modules/cosmic.nix
             ./modules/dwl.nix
           ];
           users = {
             pakin = {
               imports = [
+                ./home-manager/theme.nix
               ];
-            };
-          };
-        };
-
-        nixos-NV15 = mkHost {
-          hostName = "nixos-NV15";
-          hardwareConfig = ./hosts/hardware-configuration-NV15.nix;
-          extraModules = [
-            ./modules/grub.nix
-            ./modules/nvidia.nix
-            ./modules/kde.nix
-            ./modules/wifi.nix
-            ./modules/tlp.nix
-          ];
-          users = {
-            pakin = {
-              imports = [ ];
             };
           };
         };
