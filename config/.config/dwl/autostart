@@ -11,7 +11,7 @@ case "$(hostname)" in
     solaar -w hide & ;; 
   nixos-T480)
     wlr-randr --output HDMI-A-2 --mode 1920x1080@120Hz --pos 0,0
-    wlr-randr --output eDP-1 --right-of HDMI-A-2
+    wlr-randr --output eDP-1 --right-of HDMI-A-2 ;;
   nixos-NV15)
     wlr-randr --output HDMI-A-2 --mode 1920x1080@144.001007Hz --pos 0,0
     wlr-randr --output eDP-1 --mode 1920x1080@165Hz --right-of HDMI-A-2

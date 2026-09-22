@@ -120,9 +120,6 @@
     seahorse
   ];
 
-  security.pam.services.waylock = { };
-  # gnome keyring
-  services.gnome.gnome-keyring.enable = true;
   programs.geary.enable = true;
 
   fonts.packages = with pkgs; [

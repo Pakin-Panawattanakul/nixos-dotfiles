@@ -61,4 +61,9 @@ in
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
+  # gnome keyring
+  services.gnome.gnome-keyring.enable = true;
+
+  security.pam.services.waylock = { };
 }
