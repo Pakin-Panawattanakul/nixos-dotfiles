@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     calibre
-    z-library-desktop
+    #z-library-desktop
 
     exiftool
     poppler-utils
