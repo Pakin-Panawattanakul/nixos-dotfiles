@@ -34,7 +34,7 @@
   '';
 
   # Set your time zone.
-  time.timeZone = "Asia/Bangkok";
+  time.timeZone = "Asia/Tokyo";
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure network connections interactively with nmcli or nmtui.
@@ -52,7 +52,7 @@
   };
 
   services = {
-    # dbus: usually already true by default
+    ntp.enable = true;
     dbus.enable = true;
 
     # Enable sound.

@@ -11,7 +11,7 @@
       package = pkgs.papirus-icon-theme;
     };
     font.name = "JetBrainsMonoNerdFont";
-    font.size = 12;
+    font.size = 13;
     colorScheme = "dark";
   };
 
