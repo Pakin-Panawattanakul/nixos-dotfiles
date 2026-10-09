@@ -69,7 +69,6 @@
           extraModules = [
             ./modules/systemd-boot.nix
             ./modules/tlp.nix
-            ./modules/wifi.nix
             ./modules/ly.nix
             ./modules/dwl.nix
             ./modules/kanata.nix

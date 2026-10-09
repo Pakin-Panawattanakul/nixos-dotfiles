@@ -32,6 +32,7 @@
     libreoffice
     #thunderbird
     bitwarden-desktop
+    proton-vpn
   ];
 
 }

@@ -38,7 +38,11 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = true;
+  };
+  
 
   hardware = {
     bluetooth = {
@@ -93,10 +97,11 @@
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # wheel enable sudo
+  # networkmanager user access networkManager daemon
   users.users.pakin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ];
     packages = with pkgs; [
       tree
     ];
@@ -114,10 +119,13 @@
   # system packages
   environment.systemPackages = with pkgs; [
     curl
+    vim
     solaar
     file
     libinput
     seahorse
+    networkmanagerapplet
+    openssl
   ];
 
   programs.geary.enable = true;
